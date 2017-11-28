@@ -1,0 +1,14 @@
+version: '2'
+services:
+  app:
+    container_name: node-voicegateway-soe
+    build: .
+    image: soe:2.1.0
+    command: npm start
+    ports:
+      - "8888:8888"
+    environment:
+      TZ: 'YOUR_TIMEZONE_GOES_HERE'
+    volumes:
+    - .:/usr/app/
+    - /usr/app/node_modules 

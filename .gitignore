@@ -1,0 +1,7 @@
+node_modules
+.vscode
+.eslintrc.yml
+debug.log
+jsconfig.json
+package-lock.json
+settings.json

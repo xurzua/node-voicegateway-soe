@@ -1,0 +1,46 @@
+{
+    "soe": {
+        "description": "Restify server global parameters",
+        "parameters": {
+            "listenPort": "8888",
+            "dbReporting": true
+        }
+    },
+    "logger": {
+        "description": "Bunyan logger global parameters",
+        "parameters": {
+            "logFile": "./log/debug.log",
+            "logLevel": "debug",
+            "logCount": "3",
+            "logPeriod": "1d",
+            "closeOnExit": true
+        }
+    },
+    "couchdb": {
+        "description": "Apache CouchDB instance parameters",
+        "parameters": {
+            "host": "localhost",
+            "protocol": "http",
+            "port": "5984",
+            "user": "<YOUR_COUCHDB_USERNAME>",
+            "pass": "<YOUR_COUCHDB_PASSWORD>"
+        }
+    },
+    "conversation": {
+        "description": "Watson Conversation credentials",
+        "parameters": [
+            {
+                "tenantName": "<YOUR_TENANT_NAME_DESCRIPTION>",
+                "workspaceID": "<YOUR_WORKSPACE_ID>",
+                "username": "<YOUR_CONVERSATION_USERNAME>",
+                "password": "<YOUR_CONVERSATION_PASSWORD>"
+            },
+            {
+                "tenantName": "<YOUR_TENANT_NAME_DESCRIPTION>",
+                "workspaceID": "<YOUR_WORKSPACE_ID>",
+                "username": "<YOUR_CONVERSATION_USERNAME>",
+                "password": "<YOUR_CONVERSATION_PASSWORD>"
+            }
+        ]
+    }
+}

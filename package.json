@@ -1,0 +1,28 @@
+{
+  "name": "node-voicegateway-soe",
+  "version": "2.1.0",
+  "description": "Service Orchestration Engine (SOE) for the IBM Voice Gateway (VGW) written in Node.js using the Restify REST framework",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bunyan": "^1.8.12",
+    "restify": "^6.0.1",
+    "restify-client": "^1.0.5",
+    "watson-developer-cloud": "^2.42.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js | TZ=$TZ ./node_modules/bunyan/bin/bunyan -L",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rfrobisher/node-voicegateway-soe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rfrobisher/node-voicegateway-soe/issues/new"
+  },
+  "author": "Xavier Urzúa",
+  "license": "MIT",
+  "homepage": "https://github.com/rfrobisher/node-voicegateway-soe#readme"
+}
