@@ -91,7 +91,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Authors
 
-* **Xavier Urzúa** - *Initial work* - [xurzua](https://github.com/rfrobisher)
+* **Xavier Urzúa** - *Initial work* - [rfrobisher](https://github.com/rfrobisher)
 
 ## License
 
