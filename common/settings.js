@@ -1,12 +1,12 @@
 //--------------------------------------------------------------------------------------
-// IMPORTS 
+// IMPORTS
 //--------------------------------------------------------------------------------------
 
 const fs = require('fs');
 var settings = null;
 
 //--------------------------------------------------------------------------------------
-// SETTINGS FUNCTIONS 
+// SETTINGS FUNCTIONS
 //--------------------------------------------------------------------------------------
 var getSettings = () => {
     if (isSettingsFileExist()) {
@@ -27,6 +27,7 @@ var isSettingsFileExist = () => {
         return false;
     }
 };
+
 var isSettingsFileEmpty = () => {
 
     if (isParameters(settings)) {
@@ -47,12 +48,14 @@ var isSettingsFileEmpty = () => {
     }
     return false;
 };
+
 var isParameterObject = (obj) => {
     if (typeof obj === 'object') {
         return true;
     }
     return false;
 };
+
 var isParameterObjectEmpty = (obj) => {
     Object.values(obj).forEach(key => {
         if (key === null || key === undefined || key === "") {
@@ -61,6 +64,7 @@ var isParameterObjectEmpty = (obj) => {
     });
     return false;
 };
+
 var isParameters = (obj) => {
 
     let found = null;
@@ -74,6 +78,7 @@ var isParameters = (obj) => {
 
     return found;
 };
+
 var isParameterEmpty = (key) => {
 
     if (key === null || key === undefined || key === "") {
@@ -83,7 +88,7 @@ var isParameterEmpty = (key) => {
 };
 
 //--------------------------------------------------------------------------------------
-// EXPORTS 
+// EXPORTS
 //--------------------------------------------------------------------------------------
 
 module.exports = {
