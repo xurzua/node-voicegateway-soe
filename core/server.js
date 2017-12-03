@@ -3,7 +3,7 @@
 //--------------------------------------------------------------------------------------
 
 const restify = require('restify');
-const conv = require('./conversation');
+const conversation = require('./conversation');
 const logger = require('../common/logger');
 const config = require('../common/settings');
 
@@ -46,7 +46,7 @@ server.post('/v1/workspaces/:workspaceID/message', function (request, response) 
     let workspaceID = request.params.workspaceID;
 
     log.warn('\n[IN] VoiceGateway Request: <---\n\n', data, '\n');
-    conv.setConversationMessage(workspaceID, data, response);
+    conversation.setConversationMessage(workspaceID, data, response);
 
 });
 
