@@ -173,12 +173,5 @@ const isConversationResponseHangUp = (res) => {
 //--------------------------------------------------------------------------------------
 
 module.exports = {
-    getConversationCredentials,
-    getConversationResponse,
-    getConversationResponseParameters,
-    setConversationMessage,
-    isConversationResponseAction,
-    isConversationResponseSequence,
-    isConversationResponseTransfer,
-    isConversationResponseHangUp,
+    setConversationMessage
 };
