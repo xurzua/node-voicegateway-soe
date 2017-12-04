@@ -20,7 +20,7 @@ const log = logger.log;
 //--------------------------------------------------------------------------------------
 
 const server = restify.createServer({
-    name: 'Service Orchestation Engine',
+    name: 'Service Orchestration Engine',
     version: '2.1.0',
     certificate: null,
     key: null,
@@ -59,7 +59,7 @@ server.post('/v1/rest/logger', function (request, response) {
 //--------------------------------------------------------------------------------------
 
 server.listen(SOE_SETTINGS.listenPort, function () {
-    log.debug('[SOE] Version 2.1.0 (dev)');
+    log.debug('[SOE] Version 2.1.0-1 (dev)');
     log.debug('[SOE] Configuration file parsed sucessfully');
     log.debug('[SOE] Startup Complete. Listening at %s', server.url);
 });

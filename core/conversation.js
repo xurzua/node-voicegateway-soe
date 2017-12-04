@@ -17,8 +17,18 @@ const log = logger.log;
 //--------------------------------------------------------------------------------------
 // CONVERSATION FUNCTIONS
 //--------------------------------------------------------------------------------------
-const getConversationCredentials = (workspaceID) => {
 
+/**
+ *  Fetches the credentials of a Conversation instance by comparing the 
+ *  req.params.workspaceID of the VoiceGateway POST message and the settings.conversation.parameters object
+ *  defined in the settings.json file. If they match, then return an Object with the username and password.
+ * 
+ * @param {any} workspaceID 
+ * @returns {Object} username, password
+ */
+
+const getConversationCredentials = (workspaceID) => {
+    
     let username = null;
     let password = null;
 
@@ -27,6 +37,8 @@ const getConversationCredentials = (workspaceID) => {
             username = CONVERSATION_SETTINGS[i].username;
             password = CONVERSATION_SETTINGS[i].password;
             break;
+        } else {
+            log.error('\n[IN] There are not credentials for the requested Conversation Workspace. Please check your settings.json file. <---\n');
         }
     }
 
@@ -34,6 +46,7 @@ const getConversationCredentials = (workspaceID) => {
         username,
         password
     };
+
 };
 
 const getConversationResponse = (res, response) => {
@@ -51,6 +64,8 @@ const getConversationResponse = (res, response) => {
 //TODO REFACTOR FUNCTION
 const getConversationResponseParameters = (res) => {
 
+    let params = null;
+
     if (isConversationResponseAction(res)) {
         if (isConversationResponseTransfer(res)) {
             let params = res.output.vgwAction.parameters;
@@ -62,7 +77,6 @@ const getConversationResponseParameters = (res) => {
     if (isConversationResponseSequence(res)) {
         if (isConversationResponseTransfer(res)) {
             let seq = res.output.vgwActionSequence;
-            let params = {};
 
             for (let i = 0; i < seq.length; i++) {
                 if (seq[i].command === 'vgwActTransfer') {
@@ -77,6 +91,7 @@ const getConversationResponseParameters = (res) => {
     }
 };
 
+
 const setConversationMessage = (workspaceID, data, response) => {
 
     let conversation = new ConversationV1({
@@ -86,7 +101,7 @@ const setConversationMessage = (workspaceID, data, response) => {
         headers: {
             'X-Watson-Learning-Opt-Out': true
         },
-        
+
     });
 
     log.warn('\n[OUT] Sending VoiceGateway message to Conversation: --->\n\n', data, '\n');
@@ -102,7 +117,7 @@ const setConversationMessage = (workspaceID, data, response) => {
     }, (err, res) => {
 
         if (err) {
-            log.error('\n[OUT] Error sending message to Conversation: --->\n\n', err, '\n');
+            log.error('\n[OUT] Error sending out message to Conversation: --->\n\n', err, '\n');
             response.send(500, err);
         } else {
             log.warn('\n[IN] Conversation Response: <---\n\n', res, '\n');
@@ -113,9 +128,9 @@ const setConversationMessage = (workspaceID, data, response) => {
 };
 
 const isConversationResponseAction = (res) => {
-    
+
     if ('vgwAction' in res.output) {
-        log.warn('\n[IN] WatsonConversation response is an "vgwAction": <---\n');
+        log.warn('\n[IN] Conversation response is an "vgwAction": <---\n');
         return true;
     }
     return false;
@@ -124,7 +139,7 @@ const isConversationResponseAction = (res) => {
 const isConversationResponseSequence = (res) => {
 
     if ('vgwActionSequence' in res.output) {
-        log.warn('\n[IN] WatsonConversation response is an "vgwActionSequence": <---\n');
+        log.warn('\n[IN] Conversation response is an "vgwActionSequence": <---\n');
         return true;
     }
     return false;
@@ -135,7 +150,7 @@ const isConversationResponseTransfer = (res) => {
 
     if (isConversationResponseAction(res)) {
         if (res.output.vgwAction.command === 'vgwActTransfer') {
-            log.warn('\n[IN] WatsonConversation response is an "vgwActTransfer": <---\n');
+            log.warn('\n[IN] Conversation response is an "vgwActTransfer": <---\n');
             return true;
         }
     }
@@ -148,7 +163,7 @@ const isConversationResponseTransfer = (res) => {
         for (let i = 0; i < seq.length; i++) {
             if (seq[i].command === 'vgwActTransfer') {
                 found = true;
-                log.warn('\n[IN] WatsonConversation response is an "vgwActTransfer": <---\n');
+                log.warn('\n[IN] Conversation response is an "vgwActTransfer": <---\n');
                 break;
             }
         }
