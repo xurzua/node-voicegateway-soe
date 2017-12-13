@@ -20,15 +20,15 @@ const log = logger.log;
 
 /**
  *  Fetches the credentials of a Conversation instance by comparing the 
- *  req.params.workspaceID of the VoiceGateway POST message and the settings.conversation.parameters object
- *  defined in the settings.json file. If they match, then return an Object with the username and password.
+ *  `req.params.workspaceID` of the intial Voice Gateway POST message, and the `settings.conversation.parameters` object
+ *  defined in the `settings.json` file. If they match, then return an Object with the username and password.
  * 
- * @param {any} workspaceID 
- * @returns {Object} username, password
+ * @param {String} workspaceID 
+ * @returns {Object}
  */
 
 const getConversationCredentials = (workspaceID) => {
-    
+
     let username = null;
     let password = null;
 
@@ -37,8 +37,6 @@ const getConversationCredentials = (workspaceID) => {
             username = CONVERSATION_SETTINGS[i].username;
             password = CONVERSATION_SETTINGS[i].password;
             break;
-        } else {
-            log.error('\n[IN] There are not credentials for the requested Conversation Workspace. Please check your settings.json file. <---\n');
         }
     }
 
@@ -92,7 +90,7 @@ const getConversationResponseParameters = (res) => {
 };
 
 
-const setConversationMessage = (workspaceID, data, response) => {
+var setConversationMessage = (workspaceID, message, response) => {
 
     let conversation = new ConversationV1({
         username: getConversationCredentials(workspaceID).username,
@@ -104,15 +102,15 @@ const setConversationMessage = (workspaceID, data, response) => {
 
     });
 
-    log.warn('\n[OUT] Sending VoiceGateway message to Conversation: --->\n\n', data, '\n');
+    log.warn('\n[OUT] Sending VoiceGateway message to Conversation: --->\n\n', message, '\n');
 
     conversation.message({
-        intents: data.intents,
-        entities: data.entities,
-        input: data.input,
+        intents: message.intents,
+        entities: message.entities,
+        input: message.input,
         workspace_id: workspaceID,
-        output: data.output,
-        context: data.context
+        output: message.output,
+        context: message.context
 
     }, (err, res) => {
 
