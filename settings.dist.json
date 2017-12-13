@@ -3,7 +3,7 @@
         "description": "Restify server global parameters",
         "parameters": {
             "listenPort": "8888",
-            "dbReporting": true
+            "reporting": true
         }
     },
     "logger": {
@@ -19,11 +19,13 @@
     "couchdb": {
         "description": "Apache CouchDB instance parameters",
         "parameters": {
-            "host": "localhost",
+            "instanceName" :"<YOUR_INSTANCE_NAME_DESCRIPTION>",
+            "host": "<YOUR_COUCHDB_HOST_NAME_OR_IP>",
+            "database" : "<YOUR_COUCHDB_DATABASE_NAME>",
             "protocol": "http",
             "port": "5984",
-            "user": "<YOUR_COUCHDB_USERNAME>",
-            "pass": "<YOUR_COUCHDB_PASSWORD>"
+            "username": "<YOUR_COUCHDB_USERNAME>",
+            "password": "<YOUR_COUCHDB_PASSWORD>"
         }
     },
     "conversation": {
