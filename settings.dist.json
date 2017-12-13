@@ -3,7 +3,7 @@
         "description": "Restify server global parameters",
         "parameters": {
             "listenPort": "8888",
-            "reporting": true
+            "reporting": false
         }
     },
     "logger": {
