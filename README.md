@@ -1,15 +1,21 @@
 # node-voicegateway-soe
 
 Service Orchestration Engine (SOE) for the IBM Voice Gateway (VGW) written in Node.js using the Restify REST framework.
-For more information and other useful examples built in Python or Java please visit:
+For more information and other useful examples built with Python or Java please visit:
 
 * [IBM WASdev Github](https://github.com/WASdev/sample.voice.gateway/tree/master/soe) - The IBM WASdev Github page
 
-## Current Release 2.1.0-1 - What's New
+## What's NEW
 
-* [Added] 2.1.0: Support for multiple Watson Conversation Workspaces (multi-tenant). 
-* [Added] 2.1.0-1: Minor changes - Code refactoring.
-  
+### 2.2.0 - Current Release
+
+* 2.2.0   : Added '/reporting' endpoint for Voice Gateway event logging (CDR, Transcriptions, Conversation) using Apache CouchDB as database backend.
+
+### 2.1.0
+
+* 2.1.0   : Support for multiple Watson Conversation Workspaces (multi-tenant).
+* 2.1.0-1 : Minor changes - Code refactoring.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -83,6 +89,7 @@ export TZ=<YOUR_TIMEZONE_GOES_HERE>
 
 * [Restify](https://github.com/restify/node-restify) - Restify REST Framework
 * [Bunyan](https://github.com/trentm/node-bunyan) - Bunyan JSON Logging Module
+* [PouchDB](https://https://github.com/pouchdb/pouchdb) - PouchDB The database that syncs!
 * [Watson Developer Cloud](https://github.com/watson-developer-cloud/node-sdk) - Watson Developer Cloud Node.js SDK
 
 ## Contributing
