@@ -8,17 +8,17 @@ var settings = null;
 //--------------------------------------------------------------------------------------
 // SETTINGS FUNCTIONS
 //--------------------------------------------------------------------------------------
-var getSettings = () => {
+const getSettings = () => {
     if (isSettingsFileExist()) {
         if (!isSettingsFileEmpty()) {
             return settings;
         }
     }
 
-    throw ('There was a problem parsing the settings.json file. Check your settings.json file!');
+    throw ('There is no configuration file in the current directory. Check if the settings.json file exist!');
 };
 
-var isSettingsFileExist = () => {
+const isSettingsFileExist = () => {
     try {
         fs.statSync('settings.json').isFile();
         settings = require('../settings.json');
@@ -28,7 +28,7 @@ var isSettingsFileExist = () => {
     }
 };
 
-var isSettingsFileEmpty = () => {
+const isSettingsFileEmpty = () => {
 
     if (isParameters(settings)) {
         Object.values(settings).forEach(key => {
@@ -49,23 +49,23 @@ var isSettingsFileEmpty = () => {
     return false;
 };
 
-var isParameterObject = (obj) => {
+const isParameterObject = (obj) => {
     if (typeof obj === 'object') {
         return true;
     }
     return false;
 };
 
-var isParameterObjectEmpty = (obj) => {
+const isParameterObjectEmpty = (obj) => {
     Object.values(obj).forEach(key => {
-        if (key === null || key === undefined || key === "") {
+        if (key === null || key === undefined || key === '') {
             return true;
         }
     });
     return false;
 };
 
-var isParameters = (obj) => {
+const isParameters = (obj) => {
 
     let found = null;
     Object.values(obj).forEach(key => {
@@ -79,9 +79,9 @@ var isParameters = (obj) => {
     return found;
 };
 
-var isParameterEmpty = (key) => {
+const isParameterEmpty = (key) => {
 
-    if (key === null || key === undefined || key === "") {
+    if (key === null || key === undefined || key === '') {
         return true;
     }
     return false;

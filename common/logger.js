@@ -17,7 +17,7 @@ const dir = './log';
 //--------------------------------------------------------------------------------------
 // LOGGER FUNCTIONS 
 //--------------------------------------------------------------------------------------
-var isLogDirExist = (dir) => {
+const isLogDirExist = (dir) => {
     try {
         fs.statSync(dir);
     } catch (err) {
@@ -27,7 +27,7 @@ var isLogDirExist = (dir) => {
 
 isLogDirExist(dir);
 
-var log = Logger.createLogger({
+const log = Logger.createLogger({
     name: 'SOE',
     streams: [{
         stream: process.stdout,
