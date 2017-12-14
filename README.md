@@ -1,5 +1,7 @@
 # node-voicegateway-soe
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2a68a28fdb5949708d1ce9850d760783)](https://www.codacy.com/app/rfrobisher/node-voicegateway-soe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rfrobisher/node-voicegateway-soe&amp;utm_campaign=Badge_Grade)
+
 Service Orchestration Engine (SOE) for the IBM Voice Gateway (VGW) written in Node.js using the Restify REST framework.
 For more information and other useful examples built with Python or Java please visit:
 
