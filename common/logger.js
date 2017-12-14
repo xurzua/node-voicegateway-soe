@@ -2,9 +2,9 @@
 // IMPORTS 
 //--------------------------------------------------------------------------------------
 
-const fs = require('fs');
-const Logger = require('bunyan');
-const config = require('../common/settings');
+const fs = require("fs");
+const Logger = require("bunyan");
+const config = require("../common/settings");
 
 //--------------------------------------------------------------------------------------
 // GLOBAL VARIABLES 
@@ -12,7 +12,7 @@ const config = require('../common/settings');
 
 const settings = config.getSettings();
 const LOGGER_SETTINGS = settings.logger.parameters;
-const dir = './log';
+const dir = "./log";
 
 //--------------------------------------------------------------------------------------
 // LOGGER FUNCTIONS 
@@ -28,7 +28,7 @@ const isLogDirExist = (dir) => {
 isLogDirExist(dir);
 
 const log = Logger.createLogger({
-    name: 'SOE',
+    name: "SOE",
     streams: [{
         stream: process.stdout,
         level: LOGGER_SETTINGS.logLevel

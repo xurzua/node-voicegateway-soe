@@ -1,11 +1,11 @@
 //--------------------------------------------------------------------------------------
 // IMPORTS 
 //--------------------------------------------------------------------------------------
-const ConversationV1 = require('watson-developer-cloud/conversation/v1');
-const server = require('restify');
-const custom = require('../custom/customResponses');
-const logger = require('../common/logger');
-const config = require('../common/settings');
+const ConversationV1 = require("watson-developer-cloud/conversation/v1");
+const server = require("restify");
+const custom = require("../custom/customResponses");
+const logger = require("../common/logger");
+const config = require("../common/settings");
 
 //--------------------------------------------------------------------------------------
 // GLOBAL VARIABLES 
@@ -52,8 +52,8 @@ const getConversationResponse = (res, response) => {
     if (isConversationResponseTransfer(res)) {
         response.send(custom.customHangUp(getConversationResponseParameters(res)));
     } else {
-        log.warn('\n[OUT] WatsonConversation response is not a "vgwActTransfer" falling back to original response: --->\n');
-        log.warn('\n[OUT] Sending Conversation response to VoiceGateway: --->\n\n', res, '\n');
+        log.warn("\n[OUT] WatsonConversation response is not a \"vgwActTransfer\" falling back to original response: --->\n");
+        log.warn("\n[OUT] Sending Conversation response to VoiceGateway: --->\n\n", res, "\n");
         response.send(200, res);
     }
 
@@ -67,7 +67,7 @@ const getConversationResponseParameters = (res) => {
     if (isConversationResponseAction(res)) {
         if (isConversationResponseTransfer(res)) {
             let params = res.output.vgwAction.parameters;
-            log.warn('\n[OUT] Transfer parameters: --->\n\n', params, '\n');
+            log.warn("\n[OUT] Transfer parameters: --->\n\n", params, "\n");
             return params;
         }
     }
@@ -77,9 +77,9 @@ const getConversationResponseParameters = (res) => {
             let seq = res.output.vgwActionSequence;
 
             for (let i = 0; i < seq.length; i++) {
-                if (seq[i].command === 'vgwActTransfer') {
+                if (seq[i].command === "vgwActTransfer") {
                     params = seq[i].parameters;
-                    log.warn('\n[OUT] Transfer parameters: --->\n\n', params, '\n');
+                    log.warn("\n[OUT] Transfer parameters: --->\n\n", params, "\n");
                     break;
                 }
             }
@@ -97,12 +97,12 @@ var setConversationMessage = (workspaceID, message, response) => {
         password: getConversationCredentials(workspaceID).password,
         version_date: ConversationV1.VERSION_DATE_2017_05_26,
         headers: {
-            'X-Watson-Learning-Opt-Out': true
+            "X-Watson-Learning-Opt-Out": true
         },
 
     });
 
-    log.warn('\n[OUT] Sending VoiceGateway message to Conversation: --->\n\n', message, '\n');
+    log.warn("\n[OUT] Sending VoiceGateway message to Conversation: --->\n\n", message, "\n");
 
     conversation.message({
         intents: message.intents,
@@ -115,10 +115,10 @@ var setConversationMessage = (workspaceID, message, response) => {
     }, (err, res) => {
 
         if (err) {
-            log.error('\n[OUT] Error sending out message to Conversation: --->\n\n', err, '\n');
+            log.error("\n[OUT] Error sending out message to Conversation: --->\n\n", err, "\n");
             response.send(500, err);
         } else {
-            log.warn('\n[IN] Conversation Response: <---\n\n', res, '\n');
+            log.warn("\n[IN] Conversation Response: <---\n\n", res, "\n");
             getConversationResponse(res, response);
         }
 
@@ -127,8 +127,8 @@ var setConversationMessage = (workspaceID, message, response) => {
 
 const isConversationResponseAction = (res) => {
 
-    if ('vgwAction' in res.output) {
-        log.warn('\n[IN] Conversation response is an "vgwAction": <---\n');
+    if ("vgwAction" in res.output) {
+        log.warn("\n[IN] Conversation response is an \"vgwAction\": <---\n");
         return true;
     }
     return false;
@@ -136,8 +136,8 @@ const isConversationResponseAction = (res) => {
 
 const isConversationResponseSequence = (res) => {
 
-    if ('vgwActionSequence' in res.output) {
-        log.warn('\n[IN] Conversation response is an "vgwActionSequence": <---\n');
+    if ("vgwActionSequence" in res.output) {
+        log.warn("\n[IN] Conversation response is an \"vgwActionSequence\": <---\n");
         return true;
     }
     return false;
@@ -147,8 +147,8 @@ const isConversationResponseSequence = (res) => {
 const isConversationResponseTransfer = (res) => {
 
     if (isConversationResponseAction(res)) {
-        if (res.output.vgwAction.command === 'vgwActTransfer') {
-            log.warn('\n[IN] Conversation response is an "vgwActTransfer": <---\n');
+        if (res.output.vgwAction.command === "vgwActTransfer") {
+            log.warn("\n[IN] Conversation response is an \"vgwActTransfer\": <---\n");
             return true;
         }
     }
@@ -159,9 +159,9 @@ const isConversationResponseTransfer = (res) => {
         let found = false;
 
         for (let i = 0; i < seq.length; i++) {
-            if (seq[i].command === 'vgwActTransfer') {
+            if (seq[i].command === "vgwActTransfer") {
                 found = true;
-                log.warn('\n[IN] Conversation response is an "vgwActTransfer": <---\n');
+                log.warn("\n[IN] Conversation response is an \"vgwActTransfer\": <---\n");
                 break;
             }
         }
@@ -174,8 +174,8 @@ const isConversationResponseTransfer = (res) => {
 
 const isConversationResponseHangUp = (res) => {
 
-    if (res.input.text === 'vgwHangUp') {
-        log.warn('\n[OUT] Conversation sent a ' + res.input.text + ' request --->\n');
+    if (res.input.text === "vgwHangUp") {
+        log.warn("\n[OUT] Conversation sent a " + res.input.text + " request --->\n");
         return true;
     }
     return false;

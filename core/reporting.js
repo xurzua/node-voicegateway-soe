@@ -1,9 +1,9 @@
 //--------------------------------------------------------------------------------------
 // IMPORTS 
 //--------------------------------------------------------------------------------------
-const PouchDB = require('pouchdb');
-const logger = require('../common/logger');
-const config = require('../common/settings');
+const PouchDB = require("pouchdb");
+const logger = require("../common/logger");
+const config = require("../common/settings");
 
 //--------------------------------------------------------------------------------------
 // GLOBAL VARIABLES 
@@ -18,7 +18,7 @@ const setDBLogMessage = (message) => {
     const db = setDBInstanceConnection();
 
     db.post(message).then((res) => {
-        log.info('\n[SOE] VoiceGateway reporting event logged successfully : \n\n', res, '\n\n');
+        log.info("\n[SOE] VoiceGateway reporting event logged successfully : \n\n", res, "\n\n");
     }).catch((error) => {
         log.error(error);
     });
@@ -35,7 +35,7 @@ var isDBReportingEnabled = () => {
 
 const isDBInstanceProtocolSecure = () => {
 
-    if (COUCHDB_SETTINGS.protocol === 'https') {
+    if (COUCHDB_SETTINGS.protocol === "https") {
         return true;
     }
 
@@ -44,7 +44,7 @@ const isDBInstanceProtocolSecure = () => {
 
 const setDBInstanceConnection = () => {
 
-    let url = COUCHDB_SETTINGS.protocol + '://' + COUCHDB_SETTINGS.host + ':' + COUCHDB_SETTINGS.port + '/' + COUCHDB_SETTINGS.database;
+    let url = COUCHDB_SETTINGS.protocol + "://" + COUCHDB_SETTINGS.host + ":" + COUCHDB_SETTINGS.port + "/" + COUCHDB_SETTINGS.database;
 
     if (isDBInstanceProtocolSecure()) {
 

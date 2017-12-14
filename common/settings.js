@@ -2,7 +2,7 @@
 // IMPORTS
 //--------------------------------------------------------------------------------------
 
-const fs = require('fs');
+const fs = require("fs");
 var settings = null;
 
 //--------------------------------------------------------------------------------------
@@ -15,13 +15,13 @@ const getSettings = () => {
         }
     }
 
-    throw ('There is no configuration file in the current directory. Check if the settings.json file exist!');
+    throw ("There is no configuration file in the current directory. Check if the settings.json file exist!");
 };
 
 const isSettingsFileExist = () => {
     try {
-        fs.statSync('settings.json').isFile();
-        settings = require('../settings.json');
+        fs.statSync("settings.json").isFile();
+        settings = require("../settings.json");
         return true;
     } catch (err) {
         return false;
@@ -36,11 +36,11 @@ const isSettingsFileEmpty = () => {
             Object.values(parameters).forEach(key => {
                 if (isParameterObject(key)) {
                     if (isParameterObjectEmpty(key)) {
-                        throw ('Check you settings.json file, there is a missing, null or undefined parameter in your configuration file');
+                        throw ("Check you settings.json file, there is a missing, null or undefined parameter in your configuration file");
                     }
                 } else {
                     if (isParameterEmpty(key)) {
-                        throw ('Check you settings.json file, there is a missing, null or undefined parameter in your configuration file');
+                        throw ("Check you settings.json file, there is a missing, null or undefined parameter in your configuration file");
                     }
                 }
             });
@@ -50,7 +50,7 @@ const isSettingsFileEmpty = () => {
 };
 
 const isParameterObject = (obj) => {
-    if (typeof obj === 'object') {
+    if (typeof obj === "object") {
         return true;
     }
     return false;
@@ -58,7 +58,7 @@ const isParameterObject = (obj) => {
 
 const isParameterObjectEmpty = (obj) => {
     Object.values(obj).forEach(key => {
-        if (key === null || key === undefined || key === '') {
+        if (key === null || key === undefined || key === "") {
             return true;
         }
     });
@@ -69,7 +69,7 @@ const isParameters = (obj) => {
 
     let found = null;
     Object.values(obj).forEach(key => {
-        if (key.hasOwnProperty('parameters')) {
+        if (key.hasOwnProperty("parameters")) {
             found = true;
         } else {
             found = false;
@@ -81,7 +81,7 @@ const isParameters = (obj) => {
 
 const isParameterEmpty = (key) => {
 
-    if (key === null || key === undefined || key === '') {
+    if (key === null || key === undefined || key === "") {
         return true;
     }
     return false;
