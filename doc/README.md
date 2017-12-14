@@ -22,7 +22,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Docker Deployment
 
-Please read [Docker-README.md](Docker-README.md) for details
+Please read [Docker-README.md](doc/Docker-README.md) for details
 
 ## Installing from sources
 
@@ -94,7 +94,7 @@ export TZ=<YOUR_TIMEZONE_GOES_HERE>
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](doc/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
 
 ## Authors
 
@@ -102,7 +102,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](doc/LICENSE) file for details.
 
 ## Acknowledgments
 
