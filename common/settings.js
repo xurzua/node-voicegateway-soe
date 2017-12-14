@@ -17,7 +17,7 @@ const isParameterObject = (obj) => {
 };
 
 const isParameterObjectEmpty = (obj) => {
-    Object.values(obj).forEach(key => {
+    Object.values(obj).forEach((key) => {
         if (key === null || key === undefined || key === "") {
             return true;
         }
@@ -28,7 +28,7 @@ const isParameterObjectEmpty = (obj) => {
 const isParameters = (obj) => {
 
     let found = null;
-    Object.values(obj).forEach(key => {
+    Object.values(obj).forEach((key) => {
         if (key.hasOwnProperty("parameters")) {
             found = true;
         } else {
@@ -61,9 +61,9 @@ const isSettingsFileExist = () => {
 const isSettingsFileEmpty = () => {
 
     if (isParameters(settings)) {
-        Object.values(settings).forEach(key => {
+        Object.values(settings).forEach((key) => {
             let parameters = key.parameters;
-            Object.values(parameters).forEach(key => {
+            Object.values(parameters).forEach((key) => {
                 if (isParameterObject(key)) {
                     if (isParameterObjectEmpty(key)) {
                         throw ("Check you settings.json file, there is a missing, null or undefined parameter in your configuration file");
