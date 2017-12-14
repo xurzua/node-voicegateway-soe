@@ -172,15 +172,6 @@ const isConversationResponseTransfer = (res) => {
     return false;
 };
 
-const isConversationResponseHangUp = (res) => {
-
-    if (res.input.text === "vgwHangUp") {
-        log.warn("\n[OUT] Conversation sent a " + res.input.text + " request --->\n");
-        return true;
-    }
-    return false;
-};
-
 //--------------------------------------------------------------------------------------
 // EXPORTS 
 //--------------------------------------------------------------------------------------
