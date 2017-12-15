@@ -27,7 +27,7 @@ const server = restify.createServer({
     certificate: null,
     key: null,
     formatters: null,
-    log: log
+    log
 });
 
 server.use(restify.plugins.acceptParser(server.acceptable));
