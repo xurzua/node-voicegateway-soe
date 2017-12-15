@@ -12,20 +12,19 @@ const config = require("../common/settings");
 
 const settings = config.getSettings();
 const LOGGER_SETTINGS = settings.logger.parameters;
-const dir = "./log";
 
 //--------------------------------------------------------------------------------------
 // LOGGER FUNCTIONS 
 //--------------------------------------------------------------------------------------
-const isLogDirExist = (dir) => {
+const isLogDirExist = () => {
     try {
-        fs.statSync(dir);
-    } catch (err) {
-        fs.mkdirSync(dir);
+        fs.statSync("./log");
+    } catch (error) {
+        fs.mkdirSync("./log");
     }
 };
 
-isLogDirExist(dir);
+isLogDirExist();
 
 const log = Logger.createLogger({
     name: "SOE",
@@ -42,6 +41,7 @@ const log = Logger.createLogger({
     }
     ]
 });
+
 
 //--------------------------------------------------------------------------------------
 // EXPORTS 
