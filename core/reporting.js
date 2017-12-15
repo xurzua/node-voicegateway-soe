@@ -13,18 +13,6 @@ const SOE_SETTINGS = settings.soe.parameters;
 const COUCHDB_SETTINGS = settings.couchdb.parameters;
 const log = logger.log;
 
-const setDBLogMessage = (message) => {
-
-    const db = setDBInstanceConnection();
-
-    db.post(message).then((res) => {
-        log.info("\n[SOE] VoiceGateway reporting event logged successfully : \n\n", res, "\n\n");
-    }).catch((error) => {
-        log.error(error);
-    });
-
-};
-
 var isDBReportingEnabled = () => {
 
     if (SOE_SETTINGS.reporting === true) {
@@ -60,6 +48,18 @@ const setDBInstanceConnection = () => {
 
     let db = new PouchDB(url);
     return db;
+
+};
+
+const setDBLogMessage = (message) => {
+
+    const db = setDBInstanceConnection();
+
+    db.post(message).then((res) => {
+        log.info("\n[SOE] VoiceGateway reporting event logged successfully : \n\n", res, "\n\n");
+    }).catch((error) => {
+        log.error(error);
+    });
 
 };
 
