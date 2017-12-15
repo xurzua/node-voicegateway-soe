@@ -9,22 +9,6 @@ var settings = null;
 // SETTINGS FUNCTIONS
 //--------------------------------------------------------------------------------------
 
-const isParameterObject = (obj) => {
-    if (typeof obj === "object") {
-        return true;
-    }
-    return false;
-};
-
-const isParameterObjectEmpty = (obj) => {
-    Object.values(obj).forEach((key) => {
-        if (key === null || key === undefined || key === "") {
-            return true;
-        }
-    });
-    return false;
-};
-
 const isParameters = (obj) => {
 
     let found = null;
@@ -41,21 +25,41 @@ const isParameters = (obj) => {
 
 const isParameterEmpty = (key) => {
 
-    if (key === null || key === undefined || key === "") {
+    if (key === null || key === "") {
         return true;
     }
     return false;
 };
 
+const isParameterObject = (obj) => {
+    if (typeof obj === "object") {
+        return true;
+    }
+    return false;
+};
+
+const isParameterObjectEmpty = (obj) => {
+    Object.values(obj).forEach((key) => {
+        if (key === null || key === "") {
+            return true;
+        }
+    });
+    return false;
+};
 
 const isSettingsFileExist = () => {
-    try {
-        fs.statSync("settings.json").isFile();
-        settings = require("../settings.json");
-        return true;
-    } catch (err) {
-        return false;
-    }
+
+    return new Promise((resolve, reject) => {
+
+        try {
+            fs.statSync("settings.json").isFile();
+            settings = require("../settings.json");
+            resolve(true);
+        } catch (error) {
+            reject(false);
+        }
+
+    });
 };
 
 const isSettingsFileEmpty = () => {
@@ -80,6 +84,7 @@ const isSettingsFileEmpty = () => {
 };
 
 const getSettings = () => {
+    
     if (isSettingsFileExist()) {
         if (!isSettingsFileEmpty()) {
             return settings;
