@@ -31,19 +31,24 @@ const getConversationCredentials = (workspaceID) => {
 
     let username = null;
     let password = null;
+    
+    for (const iterator of CONVERSATION_SETTINGS) {
 
-    for (let i = 0; i < CONVERSATION_SETTINGS.length; i++) {
-        if (CONVERSATION_SETTINGS[i].workspaceID === workspaceID) {
-            username = CONVERSATION_SETTINGS[i].username;
-            password = CONVERSATION_SETTINGS[i].password;
-            break;
+        if (iterator.workspaceID === workspaceID) {
+
+            username = iterator.username;
+            password = iterator.password;
+
+            return ({
+                username,
+                password
+            });
         }
     }
 
-    return {
-        username,
-        password
-    };
+    if(username === null || password === null){
+        log.error("\n[SOE] There are not credentials in the \"settings.json\" for the requested Conversation WorkspaceID: --->\n");
+    }
 
 };
 
