@@ -1,7 +1,7 @@
 {
   "name": "node-voicegateway-soe",
   "version": "2.2.0",
-  "description": "Service Orchestration Engine (SOE) for the IBM Voice Gateway (VGW) written in Node.js using the Restify REST framework",
+  "description": "Service Orchestration Engine (SOE) example for the IBM Voice Gateway (VGW) written in Node.js using the Restify REST framework",
   "main": "app.js",
   "dependencies": {
     "bunyan": "^1.8.12",

@@ -5,7 +5,7 @@
 [daviddm-url]: https://david-dm.org/rfrobisher/node-voicegateway-soe.png?theme=shields.io
 [daviddm-image]: https://david-dm.org/rfobisher/node-voicegateway-soe
 
-Service Orchestration Engine (SOE) for the IBM Voice Gateway (VGW) written in Node.js using the Restify REST framework.
+Service Orchestration Engine (SOE) example for the IBM Voice Gateway (VGW) written in Node.js using the Restify REST framework.
 For more information and other useful examples built with Python or Java please visit:
 
 * [IBM WASdev Github](https://github.com/WASdev/sample.voice.gateway/tree/master/soe) - The IBM WASdev Github page
@@ -48,7 +48,7 @@ cd node-voicegateway-soe
 npm install
 ```
 
-### Setting your configuration
+### Setting your Conversation Credentials
 
 Rename the ```settings.dist.json``` file to ```settings.json```
 
@@ -56,23 +56,73 @@ Rename the ```settings.dist.json``` file to ```settings.json```
 mv settings.dist.json settings.json
 ```
 
-Add your Watson Conversation credentials to ```settings.json``` file
+Add your Watson Conversation credentials to ```settings.json``` file.
+
+For a single Conversation Workspace you can define as a parameter a single tenant block, with the Conversation credentials as the example below:
 
 ```javascript
- "conversation": {
+    "conversation": {
         "description": "Watson Conversation credentials",
-        "parameters": {
-            "username": "YOUR_CONVERSATION_USERNAME",
-            "password": "YOUR_CONVERSATION_PASSWORD"
-        }
+        "parameters": [
+            {
+                "tenantName": "<YOUR_TENANT_NAME_DESCRIPTION>",
+                "workspaceID": "<YOUR_WORKSPACE_ID>",
+                "username": "<YOUR_CONVERSATION_USERNAME>",
+                "password": "<YOUR_CONVERSATION_PASSWORD>"
+            }
     }
 ```
 
-Wait, what about the Watson Conversation Workspace ID?
+Instead, if your Voice Gateway comunicate against more than one Conversation Workspace, you can set as many tenant blocks inside the parameter key as you want!
 
-The SOE will use the ```WORKSPACE-ID``` sent by the IBM Voice Gateway, which is set in the ```WATSON_CONVERSATION_WORKSPACEID``` environment variable, for more information see:
+```javascript
+    "conversation": {
+        "description": "Watson Conversation credentials",
+        "parameters": [
+            {
+                "tenantName": "<YOUR_TENANT_NAME_DESCRIPTION>",
+                "workspaceID": "<YOUR_WORKSPACE_ID>",
+                "username": "<YOUR_CONVERSATION_USERNAME>",
+                "password": "<YOUR_CONVERSATION_PASSWORD>"
+            },
+            {
+                "tenantName": "<YOUR_TENANT_NAME_DESCRIPTION>",
+                "workspaceID": "<YOUR_WORKSPACE_ID>",
+                "username": "<YOUR_CONVERSATION_USERNAME>",
+                "password": "<YOUR_CONVERSATION_PASSWORD>"
+            },
+        ...
+    }
+```
 
-* [IBM Voice Gateway](https://www.ibm.com/support/knowledgecenter/en/SS4U29/config.html) - The IBM Knowledge Center
+### Reporting Endpoint Configuration
+
+By default the Voice Gateway can generate CDR, Transcriptions, and Conversation records.
+
+For more information about setting up the Voice Gateway reporting event generation, please check:
+
+* [IBM Voice Gateway](https://www.ibm.com/support/knowledgecenter/en/SS4U29/config.html#config-reporting) - The IBM Knowledge Center
+
+As the SOE sits in the middle of the Voice Gateway and Watson Conversation, it can log events of both sides and send it to a remote CouchDB / CloudantDB database for storage.
+
+Setup your CouchDB / CloudantDB parameters in ```settings.json`` file:
+
+```javascript
+    "couchdb": {
+        "description": "Apache CouchDB instance parameters",
+        "parameters": {
+            "instanceName" :"<YOUR_INSTANCE_NAME_DESCRIPTION>",
+            "host": "<YOUR_COUCHDB_HOST_NAME_OR_IP>",
+            "database" : "<YOUR_COUCHDB_DATABASE_NAME>",
+            "protocol": "http",
+            "port": "5984",
+            "username": "<YOUR_COUCHDB_USERNAME>",
+            "password": "<YOUR_COUCHDB_PASSWORD>"
+        }
+    },
+```
+
+* Note : The SOE won't create a local DB if you set the ```reporting``` variable to ```true``` and don't add the           remote database parameters in the ```settings.json`` file!
 
 ### Running the Server
 
