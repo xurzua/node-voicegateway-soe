@@ -122,7 +122,7 @@ Setup your CouchDB / CloudantDB parameters in ```settings.json`` file:
     },
 ```
 
-* Note : The SOE won't create a local DB if you set the ```reporting``` variable to ```true``` and don't add the           remote database parameters in the ```settings.json`` file!
+* Note : The SOE won't create a local DB if you set the ```reporting``` variable to ```true``` and don't add the          remote database parameters in the ```settings.json``` file!
 
 ### Running the Server
 
