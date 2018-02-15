@@ -101,7 +101,7 @@ By default the Voice Gateway can generate CDR, Transcriptions, and Conversation 
 
 For more information about setting up the Voice Gateway reporting event generation, please check:
 
-* [IBM Voice Gateway](https://www.ibm.com/support/knowledgecenter/en/SS4U29/config.html#config-reporting) - The IBM Knowledge Center
+* [Reporting Configuration](https://www.ibm.com/support/knowledgecenter/en/SS4U29/config.html#config-reporting) - IBM Voice Gateway Documentation
 
 As the SOE sits in the middle of the Voice Gateway and Watson Conversation, it can log events of both sides and send it to a remote CouchDB / CloudantDB database for storage.
 
